@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brochure Corporate — AMEXPERTS & PARTNERS</title>
+  <meta name="description" content="Téléchargez la brochure corporate d'AMEXPERTS & PARTNERS. Présentation complète du cabinet, des services et des références.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-overrides.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <style>
+    .brochure-content{display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:start}
+    .mockup-page{background:linear-gradient(135deg,#1a1a2e,var(--purple-dark));border-radius:6px;padding:2.5rem;color:#fff;min-height:540px;display:flex;flex-direction:column;position:relative;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.3)}
+    .mockup-page::before{content:'';position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="g" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M 8 0 L 0 0 0 8" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width=".5"/></pattern></defs><rect width="100" height="100" fill="url(%23g)"/></svg>')}
+    .mockup-page>*{position:relative}
+    .mockup-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;margin-bottom:3rem}
+    .mockup-title{font-size:2rem;font-family:'Cormorant Garamond',serif;font-weight:700;line-height:1.2;margin-bottom:1rem}
+    .mockup-sub{color:rgba(255,255,255,.6);font-size:.85rem;margin-bottom:2rem}
+    .mockup-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem}
+    .mockup-tag{padding:.25rem .75rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:20px;font-size:.75rem;color:rgba(255,255,255,.7)}
+    .mockup-footer{border-top:1px solid rgba(255,255,255,.1);padding-top:1.5rem;margin-top:auto;display:flex;justify-content:space-between;font-size:.78rem;color:rgba(255,255,255,.4)}
+    .download-section{background:var(--bg-light);border-radius:8px;padding:2rem}
+    .doc-item{display:flex;align-items:center;gap:1.25rem;padding:1.25rem;background:var(--white);border:1px solid #e8e4ec;border-radius:4px;margin-bottom:1rem;transition:all .3s}
+    .doc-item:hover{border-color:var(--purple);box-shadow:0 4px 16px rgba(123,45,139,.1)}
+    .doc-icon{width:48px;height:48px;background:rgba(123,45,139,.08);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--purple);flex-shrink:0}
+    .doc-info h4{font-size:.95rem;margin-bottom:.25rem}
+    .doc-info p{font-size:.82rem;color:var(--gray)}
+    .doc-action{margin-left:auto;flex-shrink:0}
+    .empty-docs{text-align:center;padding:2rem;color:var(--gray);font-size:.9rem}
+    @media(max-width:800px){.brochure-content{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="AMEXPERTS &amp; PARTNERS"></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" data-i18n="nav_home">Accueil</a></li>
+      <li><a href="about.html" data-i18n="nav_about">À propos</a></li>
+      <li class="dropdown">
+        <a href="service.html" data-i18n="nav_services">Nos Services <i class="fas fa-chevron-down" style="font-size:.7em"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="service.html#redaction" data-i18n="nav_s1">Rédaction de projets</a></li>
+          <li><a href="service.html#mobilisation" data-i18n="nav_s2">Mobilisation de ressources</a></li>
+          <li><a href="service.html#formations" data-i18n="nav_s3">Formations professionnelles</a></li>
+          <li><a href="service.html#structuration" data-i18n="nav_s4">Structuration financière</a></li>
+          <li><a href="service.html#immobilier" data-i18n="nav_s5">Expertise immobilière</a></li>
+          <li><a href="service.html#industriel" data-i18n="nav_s6">Expertise industrielle</a></li>
+          <li><a href="service.html#assurance" data-i18n="nav_s7">Expertise en assurance</a></li>
+          <li><a href="service.html#juridique" data-i18n="nav_s8">Ingénierie juridique</a></li>
+        </ul>
+      </li>
+      <li><a href="realisation.html" data-i18n="nav_realisations">Réalisations</a></li>
+      <li><a href="blog.html" data-i18n="nav_blog">Actualités</a></li>
+      <li class="dropdown">
+        <a href="#" class="active" data-i18n="nav_options">Options <i class="fas fa-chevron-down" style="font-size:.7em"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="projet_finance.html" data-i18n="nav_drop1">Projets en financement</a></li>
+          <li><a href="partenaires.html" data-i18n="nav_drop2">Nos Partenaires</a></li>
+          <li><a href="brochure.html" class="active" data-i18n="nav_drop3">Brochure Corporate</a></li>
+        </ul>
+      </li>
+      <li><a href="index.html#contact" class="nav-cta" data-i18n="nav_cta">Consultation</a></li>
+    </ul>
+    <div style="display:flex;gap:.4rem;margin-right:.5rem"><button class="lang-btn" data-lang="fr">FR</button><button class="lang-btn" data-lang="en">EN</button></div>
+      <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="breadcrumb"><a href="index.html">Accueil</a> <i class="fas fa-angle-right"></i> <span data-i18n="broch_bc">Brochure Corporate</span></div>
+  <h1 data-i18n="broch_ph_h1">Brochure Corporate</h1>
+  <p data-i18n="broch_ph_p">Téléchargez notre documentation officielle pour en savoir plus sur notre cabinet et nos services.</p>
+</div>
+
+<section style="padding:80px 0">
+  <div class="section-inner">
+    <div class="brochure-content">
+
+      <!-- MOCKUP -->
+      <div class="fade-up">
+        <div class="mockup-page">
+          <div class="mockup-logo">AMEXPERTS <span style="color:var(--purple-light)">&</span> PARTNERS</div>
+          <div class="mockup-title">Cabinet de Conseil & Ingénierie de Projets</div>
+          <div class="mockup-sub">Lomé, Togo · Afrique de l'Ouest & International</div>
+          <div class="mockup-tags">
+            <span class="mockup-tag">Structuration Financière</span>
+            <span class="mockup-tag">Mobilisation de Ressources</span>
+            <span class="mockup-tag">Expertise Immobilière</span>
+            <span class="mockup-tag">Ingénierie Juridique</span>
+            <span class="mockup-tag">Formations</span>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:1.5rem">
+            <div style="display:flex;gap:2rem">
+              <div><div style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--purple-light)">200+</div><div style="font-size:.7rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em">Projets</div></div>
+              <div><div style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--purple-light)">15+</div><div style="font-size:.7rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em">Pays</div></div>
+              <div><div style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--purple-light)">10+</div><div style="font-size:.7rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em">Années</div></div>
+            </div>
+          </div>
+          <div class="mockup-footer">
+            <span>Ref. 71/62029/DG/AM&P · 2026</span>
+            <span>Confidentiel</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DOCUMENTS -->
+      <div class="fade-up">
+        <span class="section-label" data-i18n="broch_dl_label">Téléchargements</span>
+        <h2 style="margin-bottom:1rem" data-i18n="broch_docs_h2">Notre documentation officielle</h2>
+        <p style="color:var(--gray);margin-bottom:2rem;line-height:1.8" data-i18n="broch_docs_p">Retrouvez l'ensemble de notre documentation institutionnelle pour vous informer sur nos expertises, nos références et nos offres de service.</p>
+
+        <div class="download-section">
+          <div id="docsList">
+            <!-- Documents statiques par défaut -->
+            <div class="doc-item">
+              <div class="doc-icon"><i class="fas fa-file-pdf"></i></div>
+              <div class="doc-info"><h4 data-i18n="broch_doc1_title">Brochure Générale</h4><p data-i18n="broch_doc1_desc">Présentation complète du cabinet, services et références · PDF</p></div>
+              <div class="doc-action"><a href="/cdn-cgi/l/email-protection#9afbf7ffe2eaffe8eee9eafbe8eef4ffe8e9a8aadafdf7fbf3f6b4f9f5f7a5e9eff8f0fff9eea7defff7fbf4feffbaf8e8f5f9f2efe8ffbafd5933f45933e8fbf6ff" class="btn-primary" style="font-size:.8rem"><i class="fas fa-download"></i> <span data-i18n="broch_btn_req">Demander</span></a></div>
+            </div>
+            <div class="doc-item">
+              <div class="doc-icon"><i class="fas fa-file-powerpoint"></i></div>
+              <div class="doc-info"><h4 data-i18n="broch_doc2_title">Présentation Services</h4><p data-i18n="broch_doc2_desc">Détail de notre offre de services et méthodologie · PDF</p></div>
+              <div class="doc-action"><a href="/cdn-cgi/l/email-protection#e0818d85989085929493908192948e859293d2d0a0878d81898cce838f8ddf9395828a858394dda4858d818e8485c09092234993858e948194898f8ec09385929689838593" class="btn-purple-outline" style="font-size:.8rem"><i class="fas fa-download"></i> <span data-i18n="broch_btn_req">Demander</span></a></div>
+            </div>
+            <div class="doc-item">
+              <div class="doc-icon"><i class="fas fa-folder-open"></i></div>
+              <div class="doc-info"><h4 data-i18n="broch_doc3_title">Dossier de Références</h4><p data-i18n="broch_doc3_desc">Études de cas et projets réalisés · PDF</p></div>
+              <div class="doc-action"><a href="/cdn-cgi/l/email-protection#e0818d85989085929493908192948e859293d2d0a0878d81898cce838f8ddf9395828a858394dda4858d818e8485c0848f9393898592c092234986234992858e838593" class="btn-purple-outline" style="font-size:.8rem"><i class="fas fa-download"></i> <span data-i18n="broch_btn_req">Demander</span></a></div>
+            </div>
+            <div class="doc-item">
+              <div class="doc-icon"><i class="fas fa-book-open"></i></div>
+              <div class="doc-info"><h4 data-i18n="broch_doc4_title">Guide : Financer son projet en Afrique</h4><p data-i18n="broch_doc4_desc">Guide pratique sur les instruments de financement · PDF</p></div>
+              <div class="doc-action"><a href="/cdn-cgi/l/email-protection#2a4b474f525a4f585e595a4b585e444f5859181a6a4d474b43460449454715595f48404f495e176e4f474b444e4f0a4d5f434e4f0a4c43444b44494f474f445e" class="btn-purple-outline" style="font-size:.8rem"><i class="fas fa-download"></i> <span data-i18n="broch_btn_req">Demander</span></a></div>
+            </div>
+          </div>
+          <div style="background:rgba(123,45,139,.06);border-radius:4px;padding:1rem 1.25rem;margin-top:1rem;font-size:.84rem;color:var(--gray-dark)">
+            <i class="fas fa-info-circle" style="color:var(--purple);margin-right:.5rem"></i>
+            <span data-i18n="broch_info">Les documents sont transmis par email sur demande. Cliquez sur "Demander" pour envoyer une requête à notre équipe.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section style="background:var(--black)">
+  <div class="section-inner" style="max-width:700px;text-align:center">
+    <span class="section-label" style="color:var(--purple-light)" data-i18n="broch_contact_label">Contact direct</span>
+    <h2 style="color:#fff;margin-bottom:1rem" data-i18n="broch_cta_h2">Besoin d'informations supplémentaires ?</h2>
+    <p style="color:rgba(255,255,255,.7);margin-bottom:2.5rem" data-i18n="broch_cta_p">Notre équipe est disponible pour répondre à toutes vos questions et vous fournir les documents dont vous avez besoin.</p>
+    <div style="display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap">
+      <a href="/cdn-cgi/l/email-protection#ed8c8088959d889f999e9d8c9f9983889f9edfddad8a808c8481c38e8280" class="btn-primary"><i class="fas fa-envelope"></i> <span data-i18n="broch_btn_email">Envoyer un email</span></a>
+      <a href="https://wa.me/22899468126" class="btn-outline" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a href="index.html#contact" class="btn-outline"><i class="fas fa-calendar-check"></i> <span data-i18n="cta_btn">Prendre RDV</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-name">AMEXPERTS <span style="color:var(--purple-light)">&</span> PARTNERS</span>
+      <p data-i18n="foot_tagline_short">Cabinet de conseil et d'ingénierie de projets. Lomé, Togo.</p>
+    </div>
+    <div class="footer-col"><h4 data-i18n="foot_h_svc">Services</h4><ul><li><a href="service.html#redaction" data-i18n="nav_s1">Rédaction de projets</a></li><li><a href="service.html#mobilisation" data-i18n="nav_s2">Mobilisation de ressources</a></li><li><a href="service.html#structuration" data-i18n="nav_s4">Structuration financière</a></li></ul></div>
+    <div class="footer-col"><h4 data-i18n="foot_h_nav">Navigation</h4><ul><li><a href="index.html" data-i18n="nav_home">Accueil</a></li><li><a href="about.html" data-i18n="nav_about">À propos</a></li><li><a href="realisation.html" data-i18n="nav_realisations">Réalisations</a></li><li><a href="partenaires.html" data-i18n="foot_n_part">Partenariats</a></li></ul></div>
+    <div class="footer-col"><h4 data-i18n="foot_h_contact">Contact</h4><ul><li><a href="tel:+22899468126">+228 99 46 81 26</a></li><li><a href="tel:+41779885166">+41 77 988 51 66</a></li><li><a href="/cdn-cgi/l/email-protection#432a2d252c03222e263b3326313730222d27332231372d2631306d2d2637"><span class="__cf_email__" data-cfemail="5d34333b321d3c3038252d382f292e3c33392d3c2f2933382f2e73333829">[email&#160;protected]</span></a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p data-i18n="foot_copy">© 2026 AMEXPERTS AND PARTNERS — Tous droits réservés</p>
+    <div class="footer-social"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="https://wa.me/22899468126"><i class="fab fa-whatsapp"></i></a></div>
+  </div>
+</footer>
+
+<a href="/cdn-cgi/l/email-protection#d7beb9b1b897b6bab2afa7b2a5a3a4b6b9b3a7b6a5a3b9b2a5a4f9b9b2a3" class="whatsapp-float mail-float" title="Email"><i class="fas fa-envelope"></i></a>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
+<script src="i18n.js"></script>
+</body>
+</html>

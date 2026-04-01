@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMEXPERTS &amp; PARTNERS — Cabinet de Conseil &amp; Ingénierie de Projets</title>
+  <meta name="description" content="AMEXPERTS AND PARTNERS — Cabinet de conseil, ingénierie financière et expertise technique. Structuration financière, mobilisation de ressources, Afrique de l'Ouest.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-overrides.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="AMEXPERTS &amp; PARTNERS"></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" data-i18n="nav_home">Accueil</a></li>
+      <li><a href="about.html" data-i18n="nav_about">À propos</a></li>
+      <li class="dropdown">
+        <a href="service.html" data-i18n="nav_services">Nos Services <i class="fas fa-chevron-down" style="font-size:.7em"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="service.html#redaction" data-i18n="nav_s1">Rédaction de projets</a></li>
+          <li><a href="service.html#mobilisation" data-i18n="nav_s2">Mobilisation de ressources</a></li>
+          <li><a href="service.html#formations" data-i18n="nav_s3">Formations professionnelles</a></li>
+          <li><a href="service.html#structuration" data-i18n="nav_s4">Structuration financière</a></li>
+          <li><a href="service.html#immobilier" data-i18n="nav_s5">Expertise immobilière</a></li>
+          <li><a href="service.html#industriel" data-i18n="nav_s6">Expertise industrielle</a></li>
+          <li><a href="service.html#assurance" data-i18n="nav_s7">Expertise en assurance</a></li>
+          <li><a href="service.html#juridique" data-i18n="nav_s8">Ingénierie juridique</a></li>
+        </ul>
+      </li>
+      <li><a href="realisation.html" data-i18n="nav_realisations">Réalisations</a></li>
+      <li><a href="blog.html" data-i18n="nav_blog">Actualités</a></li>
+      <li class="dropdown">
+        <a href="#" data-i18n="nav_options">Options <i class="fas fa-chevron-down" style="font-size:.7em"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="projet_finance.html" data-i18n="nav_drop1">Projets en financement</a></li>
+          <li><a href="partenaires.html" data-i18n="nav_drop2">Nos Partenaires</a></li>
+          <li><a href="brochure.html" data-i18n="nav_drop3">Brochure Corporate</a></li>
+        </ul>
+      </li>
+      <li><a href="#contact" class="nav-cta" data-i18n="nav_cta">Consultation</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:.6rem">
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge" data-i18n="hero_badge">Cabinet de Conseil &amp; Ingénierie — Lomé, Togo</div>
+      <h1 data-i18n="hero_h1">L'expertise <span>technique</span> et <span>financière</span><br>au service de vos projets</h1>
+      <p class="hero-desc" data-i18n="hero_desc">AMEXPERTS &amp; PARTNERS accompagne entreprises, institutions et investisseurs dans la structuration, le financement et la réalisation de leurs projets en Afrique et à l'international.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary"><i class="fas fa-calendar-check"></i> <span data-i18n="hero_cta1">Demander une consultation</span></a>
+        <a href="service.html" class="btn-outline"><i class="fas fa-arrow-right"></i> <span data-i18n="hero_cta2">Nos services</span></a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card fade-up"><div class="stat-num counter" data-target="200" data-suffix="+">0+</div><div class="stat-label" data-i18n="stat1">Projets structurés</div></div>
+      <div class="stat-card fade-up"><div class="stat-num counter" data-target="15" data-suffix="+">0+</div><div class="stat-label" data-i18n="stat2">Pays d'intervention</div></div>
+      <div class="stat-card fade-up"><div class="stat-num counter" data-target="50" data-suffix="M€+">0M€+</div><div class="stat-label" data-i18n="stat3">Financements mobilisés</div></div>
+      <div class="stat-card fade-up"><div class="stat-num counter" data-target="10" data-suffix=" ans">0 ans</div><div class="stat-label" data-i18n="stat4">D'expérience</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="partners-strip">
+  <div class="inner">
+    <p data-i18n="partners_title">Nos partenaires &amp; certifications</p>
+    <span style="color:#7a5a90;font-size:.85rem;font-family:var(--font-serif);letter-spacing:.06em" data-i18n="partners_sub">Banques · Fonds d'investissement · Institutions financières · ONG</span>
+  </div>
+</div>
+
+<section id="services" style="background:var(--bg-light)">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <span class="section-label" data-i18n="svc_label">Ce que nous faisons</span>
+        <h2 class="section-title" data-i18n="svc_title">Nos domaines d'expertise</h2>
+        <p class="section-subtitle" data-i18n="svc_sub">Une offre complète de conseil et d'ingénierie de projets pour vos ambitions en Afrique et à l'international.</p>
+      </div>
+      <a href="service.html" class="btn-purple-outline" data-i18n="svc_btn">Voir tous les services</a>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-file-alt"></i></div><h3 data-i18n="s1_title">Rédaction de projets</h3><p data-i18n="s1_desc">Études de faisabilité, business plans, dossiers bancaires et bailleurs pour maximiser vos chances de financement.</p><a href="service.html#redaction" class="link" data-i18n="learn_more">En savoir plus →</a></div>
+      <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-hand-holding-usd"></i></div><h3 data-i18n="s2_title">Mobilisation de ressources</h3><p data-i18n="s2_desc">Recherche de financement, structuration investisseurs, levée de fonds et instruments financiers (BG, SBLC, MT760).</p><a href="service.html#mobilisation" class="link" data-i18n="learn_more">En savoir plus →</a></div>
+      <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-university"></i></div><h3 data-i18n="s3_title">Structuration financière</h3><p data-i18n="s3_desc">Modélisation financière avancée, optimisation fiscale, structuration dette/equity et stratégies de levée de fonds.</p><a href="service.html#structuration" class="link" data-i18n="learn_more">En savoir plus →</a></div>
+      <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-building"></i></div><h3 data-i18n="s4_title">Expertise immobilière</h3><p data-i18n="s4_desc">Évaluation d'actifs, audit immobilier et due diligence pour sécuriser vos investissements immobiliers.</p><a href="service.html#immobilier" class="link" data-i18n="learn_more">En savoir plus →</a></div>
+      <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-balance-scale"></i></div><h3 data-i18n="s5_title">Ingénierie juridique</h3><p data-i18n="s5_desc">Structuration juridique de projets, montage de financement, due diligence et sécurisation contractuelle.</p><a href="service.html#juridique" class="link" data-i18n="learn_more">En savoir plus →</a></div>
+      <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-chalkboard-teacher"></i></div><h3 data-i18n="s6_title">Formations professionnelles</h3><p data-i18n="s6_desc">Finance structurée, montage de projets, gestion des risques et assurance pour renforcer vos équipes.</p><a href="service.html#formations" class="link" data-i18n="learn_more">En savoir plus →</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div>
+        <span class="section-label" data-i18n="why_label">Pourquoi nous choisir</span>
+        <h2 class="section-title" data-i18n="why_title">Un cabinet à votre mesure</h2>
+        <p style="margin-bottom:2.5rem" data-i18n="why_intro">AMEXPERTS &amp; PARTNERS allie expertise technique, rigueur financière et connaissance du terrain africain pour livrer des solutions sur-mesure.</p>
+        <div class="why-list">
+          <div class="why-item fade-up"><div class="why-icon"><i class="fas fa-globe-africa"></i></div><div><h4 data-i18n="why1_title">Ancrage africain, vision internationale</h4><p data-i18n="why1_desc">Basé à Lomé, nous intervenons dans toute l'Afrique de l'Ouest, Centrale et à l'international avec une connaissance fine des réalités locales.</p></div></div>
+          <div class="why-item fade-up"><div class="why-icon"><i class="fas fa-network-wired"></i></div><div><h4 data-i18n="why2_title">Réseau d'experts pluridisciplinaires</h4><p data-i18n="why2_desc">Juristes, financiers, ingénieurs et experts sectoriels collaborent pour vous offrir un conseil intégré et cohérent.</p></div></div>
+          <div class="why-item fade-up"><div class="why-icon"><i class="fas fa-handshake"></i></div><div><h4 data-i18n="why3_title">Accompagnement de bout en bout</h4><p data-i18n="why3_desc">De la conception à la mise en œuvre, nous restons à vos côtés à chaque étape du projet.</p></div></div>
+          <div class="why-item fade-up"><div class="why-icon"><i class="fas fa-shield-alt"></i></div><div><h4 data-i18n="why4_title">Éthique &amp; confidentialité</h4><p data-i18n="why4_desc">Nous appliquons les plus hauts standards déontologiques. Chaque mission est traitée avec discrétion et intégrité.</p></div></div>
+        </div>
+        <div style="margin-top:2.5rem"><a href="about.html" class="btn-primary" data-i18n="why_btn">Découvrir le cabinet</a></div>
+      </div>
+      <div>
+        <div style="background:linear-gradient(135deg,#1a0a24,var(--purple-dark));border-radius:8px;padding:3rem;color:#fff;min-height:480px;display:flex;flex-direction:column;justify-content:space-between">
+          <div>
+            <i class="fas fa-quote-left" style="font-size:2.5rem;color:rgba(255,255,255,.18);margin-bottom:1.5rem;display:block"></i>
+            <p style="color:rgba(255,255,255,.88);font-size:1.08rem;line-height:1.85;font-style:italic" data-i18n="why_quote">« Notre mission est de transformer vos ambitions en projets bankables, en mobilisant les meilleures ressources humaines, techniques et financières. »</p>
+          </div>
+          <div>
+            <div style="border-top:1px solid rgba(255,255,255,.15);padding-top:1.5rem;margin-top:2rem">
+              <strong style="color:#fff;display:block;font-family:var(--font-serif);font-size:1.1rem" data-i18n="why_dg">Direction Générale</strong>
+              <span style="color:rgba(255,255,255,.55);font-size:.85rem">AMEXPERTS AND PARTNERS</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem">
+              <div style="text-align:center;padding:1rem;background:rgba(255,255,255,.05);border-radius:4px"><div style="font-family:var(--font-serif);font-size:2rem;color:#e0a8f0;font-weight:700" class="counter" data-target="10" data-suffix="+">0+</div><div style="font-size:.72rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.1em" data-i18n="why_years">Années</div></div>
+              <div style="text-align:center;padding:1rem;background:rgba(255,255,255,.05);border-radius:4px"><div style="font-family:var(--font-serif);font-size:2rem;color:#e0a8f0;font-weight:700" class="counter" data-target="15" data-suffix="+">0+</div><div style="font-size:.72rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.1em" data-i18n="why_countries">Pays</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg-light)">
+  <div class="section-inner">
+    <div class="section-header">
+      <div><span class="section-label" data-i18n="ref_label">Nos références</span><h2 class="section-title" data-i18n="ref_title">Réalisations récentes</h2></div>
+      <a href="realisation.html" class="btn-purple-outline" data-i18n="ref_btn">Voir toutes</a>
+    </div>
+    <div class="realisations-grid" id="realisationsContainer">
+      <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--gray)">
+        <i class="fas fa-spinner fa-spin" style="font-size:1.5rem;color:var(--purple);display:block;margin-bottom:.75rem"></i>
+        <p data-i18n="loading">Chargement…</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div style="max-width:700px;margin:0 auto">
+    <h2 data-i18n="cta_title">Votre projet mérite les meilleures expertises</h2>
+    <p data-i18n="cta_desc">Contactez-nous pour une première consultation gratuite et confidentielle.</p>
+    <a href="#contact" class="btn-white"><i class="fas fa-calendar-alt"></i> <span data-i18n="cta_btn">Prendre rendez-vous</span></a>
+  </div>
+</div>
+
+<section id="actualites">
+  <div class="section-inner">
+    <div class="section-header">
+      <div><span class="section-label" data-i18n="blog_label">Actualités &amp; Blog</span><h2 class="section-title" data-i18n="blog_title">Nos dernières analyses</h2></div>
+      <a href="blog.html" class="btn-purple-outline" data-i18n="blog_btn">Tout voir</a>
+    </div>
+    <div class="blog-grid" id="blogContainer"></div>
+  </div>
+</section>
+
+<section id="contact" style="background:var(--bg-light)">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <span class="section-label" data-i18n="contact_label">Nous contacter</span>
+        <h2 class="section-title" data-i18n="contact_title">Demandez une consultation</h2>
+        <p class="section-subtitle" data-i18n="contact_sub">Nos experts sont disponibles pour analyser votre projet et vous proposer les meilleures solutions.</p>
+      </div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item"><div class="icon"><i class="fas fa-map-marker-alt"></i></div><div><h4 data-i18n="ci_addr_h">Adresse</h4><p>Rue des Frères Franciscains<br>Lomé, République du Togo</p></div></div>
+        <div class="contact-item"><div class="icon"><i class="fas fa-phone-alt"></i></div><div><h4 data-i18n="ci_phone_h">Téléphone</h4><p><a href="tel:+22899468126">+228 99 46 81 26</a><br><a href="tel:+41779885166">+41 77 988 51 66</a></p></div></div>
+        <div class="contact-item"><div class="icon"><i class="fas fa-envelope"></i></div><div><h4>Email</h4><p><a href="/cdn-cgi/l/email-protection#8ce5e2eae3ccede1e9f4fce9fef8ffede2e8fcedfef8e2e9feffa2e2e9f8"><span class="__cf_email__" data-cfemail="523b3c343d12333f372a2237202621333c36223320263c3720217c3c3726">[email&#160;protected]</span></a></p></div></div>
+        <div class="contact-item"><div class="icon"><i class="fab fa-whatsapp"></i></div><div><h4>WhatsApp Business</h4><p><a href="https://wa.me/22899468126" target="_blank" data-i18n="ci_wa">Discuter sur WhatsApp</a></p></div></div>
+        <div class="contact-item"><div class="icon"><i class="fas fa-globe"></i></div><div><h4 data-i18n="ci_zone_h">Zone d'intervention</h4><p data-i18n="ci_zone">Afrique de l'Ouest, Centrale &amp; International</p></div></div>
+      </div>
+      <form class="contact-form" id="consultationForm">
+        <div class="form-row">
+          <div class="form-group"><label data-i18n="f_nom_label">Nom complet *</label><input type="text" name="nom" data-i18n-ph="f_nom_ph" placeholder="Votre nom" required></div>
+          <div class="form-group"><label data-i18n="f_email_label">Email *</label><input type="email" name="email" placeholder="votre@email.com" required></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label data-i18n="f_tel_label">Téléphone</label><input type="tel" name="telephone" data-i18n-ph="f_tel_ph" placeholder="+228 xx xx xx xx"></div>
+          <div class="form-group"><label data-i18n="f_org_label">Organisation</label><input type="text" name="organisation" data-i18n-ph="f_org_ph" placeholder="Société / Institution"></div>
+        </div>
+        <div class="form-group">
+          <label data-i18n="f_svc_label">Service souhaité</label>
+          <select name="service">
+            <option value="" data-i18n="f_svc_default">— Sélectionner un service —</option>
+            <option data-i18n="f_svc1">Rédaction de projets</option>
+            <option data-i18n="f_svc2">Mobilisation de ressources</option>
+            <option data-i18n="f_svc3">Structuration financière</option>
+            <option data-i18n="f_svc4">Expertise immobilière</option>
+            <option data-i18n="f_svc5">Expertise industrielle</option>
+            <option data-i18n="f_svc6">Expertise en assurance</option>
+            <option data-i18n="f_svc7">Ingénierie juridique et financière</option>
+            <option data-i18n="f_svc8">Formations professionnelles</option>
+            <option data-i18n="f_svc9">Autre</option>
+          </select>
+        </div>
+        <div class="form-group"><label data-i18n="f_msg_label">Votre message *</label><textarea name="message" data-i18n-ph="f_msg_ph" placeholder="Décrivez votre projet ou besoin..." required></textarea></div>
+        <button type="submit" class="btn-primary" style="align-self:flex-start"><i class="fas fa-paper-plane"></i> <span data-i18n="f_send">Envoyer</span></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-name">AMEXPERTS &amp; PARTNERS</span>
+      <p data-i18n="foot_tagline">Cabinet de conseil et d'ingénierie de projets. Expertises industrielles, techniques, de négoces et de représentation.</p>
+      <p style="margin-top:.75rem;font-size:.8rem" data-i18n="foot_city">Lomé, Togo · Afrique de l'Ouest &amp; International</p>
+      <form id="newsletterForm" style="margin-top:1.5rem">
+        <p style="font-size:.78rem;margin-bottom:.6rem;color:rgba(255,255,255,.5)" data-i18n="foot_nl">Newsletter — Analyses &amp; Opportunités</p>
+        <div style="display:flex;gap:.4rem">
+          <input type="email" data-i18n-ph="foot_nl_ph" placeholder="Votre email" style="flex:1;padding:.5rem .75rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#fff;border-radius:3px;font-family:var(--font-sans);font-size:.82rem;outline:none">
+          <button type="submit" style="padding:.5rem .9rem;background:var(--purple);color:#fff;border:none;cursor:pointer;border-radius:3px;font-size:.82rem;font-family:var(--font-sans)">OK</button>
+        </div>
+      </form>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="foot_h_svc">Services</h4>
+      <ul>
+        <li><a href="service.html#redaction" data-i18n="foot_s1">Rédaction de projets</a></li>
+        <li><a href="service.html#mobilisation" data-i18n="foot_s2">Mobilisation de ressources</a></li>
+        <li><a href="service.html#structuration" data-i18n="foot_s3">Structuration financière</a></li>
+        <li><a href="service.html#immobilier" data-i18n="foot_s4">Expertise immobilière</a></li>
+        <li><a href="service.html#juridique" data-i18n="foot_s5">Ingénierie juridique</a></li>
+        <li><a href="service.html#formations" data-i18n="foot_s6">Formations</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="foot_h_nav">Navigation</h4>
+      <ul>
+        <li><a href="index.html" data-i18n="nav_home">Accueil</a></li>
+        <li><a href="about.html" data-i18n="nav_about">À propos</a></li>
+        <li><a href="realisation.html" data-i18n="nav_realisations">Réalisations</a></li>
+        <li><a href="blog.html" data-i18n="foot_n_blog">Actualités &amp; Blog</a></li>
+        <li><a href="partenaires.html" data-i18n="foot_n_part">Nos Partenaires</a></li>
+        <li><a href="projet_finance.html" data-i18n="foot_n_proj">Projets en financement</a></li>
+        <li><a href="brochure.html" data-i18n="foot_n_broch">Brochure</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="foot_h_contact">Contact</h4>
+      <ul>
+        <li><a href="tel:+22899468126">+228 99 46 81 26</a></li>
+        <li><a href="tel:+41779885166">+41 77 988 51 66</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#1a73747c755a7b777f626a7f686e697b747e6a7b686e747f686934747f6e"><span class="__cf_email__" data-cfemail="5c35323a331c3d3139242c392e282f3d32382c3d2e2832392e2f72323928">[email&#160;protected]</span></a></li>
+        <li><a href="https://wa.me/22899468126">WhatsApp Business</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p data-i18n="foot_copy">© 2026 AMEXPERTS AND PARTNERS — Tous droits réservés | Ref. 71/62029/DG/AM&amp;P</p>
+    <div class="footer-social">
+      <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://wa.me/22899468126" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </div>
+</footer>
+
+<a href="/cdn-cgi/l/email-protection#9df4f3fbf2ddfcf0f8e5edf8efe9eefcf3f9edfcefe9f3f8efeeb3f3f8e9" class="whatsapp-float mail-float" title="Email"><i class="fas fa-envelope"></i></a>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
+<script src="i18n.js"></script>
+</body>
+</html>

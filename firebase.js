@@ -10,13 +10,13 @@
    ╚══════════════════════════════════════════════════════════╝
    ════════════════════════════════════════════════════════════ */
 
-var FIREBASE_CONFIG = {
-  apiKey:            "COLLER_VOTRE_API_KEY_ICI",
-  authDomain:        "VOTRE_PROJET.firebaseapp.com",
-  projectId:         "VOTRE_PROJET_ID",
-  storageBucket:     "VOTRE_PROJET.firebasestorage.app",
-  messagingSenderId: "VOTRE_SENDER_ID",
-  appId:             "VOTRE_APP_ID"
+const firebaseConfig = {
+  apiKey: "AIzaSyBZB_51fpfegtUlZtwF3mgJ7PwMZM3pjhk",
+  authDomain: "amexperts-and-partners-ac615.firebaseapp.com",
+  projectId: "amexperts-and-partners-ac615",
+  storageBucket: "amexperts-and-partners-ac615.firebasestorage.app",
+  messagingSenderId: "427905166706",
+  appId: "1:427905166706:web:f50268a3f137a8706901eb"
 };
 
 /* ════════════════════════════════════════════════════════════

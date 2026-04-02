@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Réalisations — AMEXPERTS & PARTNERS</title>
+  <meta name="description" content="Découvrez les réalisations et références d'AMEXPERTS & PARTNERS : projets structurés, études de cas et témoignages clients.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-overrides.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script src="firebase.js"></script>
+  <style>
+    .filter-bar { display:flex; gap:0.75rem; flex-wrap:wrap; margin-bottom:2.5rem; }
+    .filter-btn { padding:0.5rem 1.25rem; background:transparent; border:1px solid #d0c8d8; color:var(--gray-dark); font-family:var(--font-sans); font-size:0.82rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; cursor:pointer; border-radius:2px; transition:all 0.3s; }
+    .filter-btn.active, .filter-btn:hover { background:var(--purple); border-color:var(--purple); color:#fff; }
+    .realisation-card .meta { display:flex; gap:1rem; font-size:0.78rem; color:var(--gray); margin-top:1rem; }
+    .realisation-card .meta i { color:var(--purple); }
+    .testimonials-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; }
+    .testimonial-card { background:var(--bg-light); border-radius:4px; padding:2rem; border-left:4px solid var(--purple); }
+    .testimonial-card .quote { font-size:1rem; line-height:1.8; font-style:italic; color:var(--gray-dark); margin-bottom:1.25rem; }
+    .testimonial-card .author { font-weight:700; font-size:0.9rem; }
+    .testimonial-card .role { font-size:0.82rem; color:var(--gray); }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><img src="assets/logo.png" alt="AMEXPERTS &amp; PARTNERS"></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" data-i18n="nav_home">Accueil</a></li><li><a href="about.html" data-i18n="nav_about">À propos</a></li>
+        <li class="dropdown"><a href="service.html" data-i18n="nav_services">Nos Services <i class="fas fa-chevron-down" style="font-size:0.7em"></i></a><ul class="dropdown-menu"><li><a href="service.html#redaction">Rédaction de projets</a></li><li><a href="service.html#mobilisation">Mobilisation de ressources</a></li><li><a href="service.html#structuration">Structuration financière</a></li><li><a href="service.html#immobilier">Expertise immobilière</a></li><li><a href="service.html#juridique">Ingénierie juridique</a></li></ul></li>
+        <li><a href="realisation.html" class="active" data-i18n="nav_real">Réalisations</a></li><li><a href="blog.html" data-i18n="nav_blog">Actualités</a></li>
+        <li class="dropdown"><a href="#" data-i18n="nav_options">Options <i class="fas fa-chevron-down" style="font-size:0.7em"></i></a><ul class="dropdown-menu"><li><a href="projet_finance.html">Projets en financement</a></li><li><a href="partenaires.html">Nos Partenaires</a></li><li><a href="brochure.html">Brochure Corporate</a></li></ul></li>
+        <li><a href="index.html#contact" class="nav-cta" data-i18n="nav_cta">Consultation</a></li>
+      </ul>
+      <div style="display:flex;gap:.4rem;margin-right:.5rem"><button class="lang-btn" data-lang="fr">FR</button><button class="lang-btn" data-lang="en">EN</button></div>
+      <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="breadcrumb"><a href="index.html">Accueil</a> <i class="fas fa-angle-right"></i> <span data-i18n="real_bc">Réalisations</span></div>
+    <h1 data-i18n="real_ph_h1">Nos Réalisations</h1>
+    <p data-i18n="real_ph_p">Un portefeuille de projets concrets illustrant notre expertise et notre engagement pour le développement de l'Afrique.</p>
+  </div>
+
+  <!-- STATS -->
+  <div style="background:#2a1e38;padding:50px 2rem">
+    <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem">
+      <div style="text-align:center"><div style="font-family:var(--font-serif);font-size:3rem;font-weight:700;color:var(--purple-light)" class="counter" data-target="200" data-suffix="+">0+</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.1em;margin-top:0.4rem" data-i18n="real_stat1">Projets réalisés</div></div>
+      <div style="text-align:center"><div style="font-family:var(--font-serif);font-size:3rem;font-weight:700;color:var(--purple-light)" class="counter" data-target="15" data-suffix="+">0+</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.1em;margin-top:0.4rem" data-i18n="real_stat2">Pays couverts</div></div>
+      <div style="text-align:center"><div style="font-family:var(--font-serif);font-size:3rem;font-weight:700;color:var(--purple-light)" class="counter" data-target="50" data-suffix="M€+">0M€+</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.1em;margin-top:0.4rem" data-i18n="real_stat3">Financements mobilisés</div></div>
+      <div style="text-align:center"><div style="font-family:var(--font-serif);font-size:3rem;font-weight:700;color:var(--purple-light)" class="counter" data-target="8" data-suffix="+">0+</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.1em;margin-top:0.4rem" data-i18n="real_stat4">Secteurs couverts</div></div>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-inner">
+      <div class="section-header">
+        <div>
+          <span class="section-label" data-i18n="real_portfolio_label">Portfolio de projets</span>
+          <h2 data-i18n="real_portfolio_h2">Études de cas</h2>
+        </div>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" data-i18n="real_f_all">Tous</button>
+        <button class="filter-btn" data-i18n="real_f_energy">Énergie</button>
+        <button class="filter-btn" data-i18n="real_f_immo">Immobilier</button>
+        <button class="filter-btn" data-i18n="real_f_agro">Agro-industrie</button>
+        <button class="filter-btn" data-i18n="real_f_finance">Finance</button>
+        <button class="filter-btn" data-i18n="real_f_infra">Infrastructure</button>
+      </div>
+      <div class="realisations-grid" id="realisationsGrid">
+        <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--gray)">
+          <i class="fas fa-spinner fa-spin" style="font-size:1.5rem;color:var(--purple);display:block;margin-bottom:.75rem"></i>
+          <p data-i18n="loading">Chargement…</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMOIGNAGES -->
+  <section style="background:var(--bg-light)">
+    <div class="section-inner">
+      <div style="text-align:center;margin-bottom:3.5rem">
+        <span class="section-label" data-i18n="real_temoign_label">Ce que disent nos clients</span>
+        <h2 data-i18n="real_temoign_h2">Témoignages</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up">
+          <p class="quote">« AMEXPERTS & PARTNERS a structuré notre dossier de financement avec une rigueur et une professionnalisme remarquables. Grâce à leur expertise, nous avons obtenu le financement en moins de 4 mois. »</p>
+          <div class="author">Directeur Général</div>
+          <div class="role">Promoteur immobilier — Togo</div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <p class="quote">« Une équipe d'experts qui maîtrise parfaitement les réalités du marché africain. Leur accompagnement juridique et financier a été décisif dans la réussite de notre projet agro-industriel. »</p>
+          <div class="author">Président du Conseil d'Administration</div>
+          <div class="role">Groupe agro-industriel — Côte d'Ivoire</div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <p class="quote">« L'ingénierie financière d'AMEXPERTS & PARTNERS nous a permis d'optimiser notre structure de financement et de réduire significativement notre coût du capital. Un partenaire de confiance. »</p>
+          <div class="author">Directeur Financier</div>
+          <div class="role">Fonds d'investissement — Sénégal</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <div style="max-width:700px;margin:0 auto">
+      <h2 data-i18n="real_cta_h2">Votre projet sera notre prochaine réussite</h2>
+      <p data-i18n="real_cta_p">Contactez-nous pour discuter de votre projet et obtenir une analyse préliminaire gratuite.</p>
+      <a href="index.html#contact" class="btn-white"><i class="fas fa-calendar-alt"></i> <span data-i18n="real_cta_btn">Prendre rendez-vous</span></a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><div class="logo-area"><span class="brand-name">AMEXPERTS <span style="color:var(--purple-light)">&</span> PARTNERS</span></div><p>Cabinet de conseil et d'ingénierie de projets. Lomé, Togo.</p></div>
+      <div class="footer-col"><h4 data-i18n="foot_h_svc">Services</h4><ul><li><a href="service.html#redaction">Rédaction de projets</a></li><li><a href="service.html#mobilisation">Mobilisation de ressources</a></li><li><a href="service.html#structuration">Structuration financière</a></li><li><a href="service.html#immobilier">Expertise immobilière</a></li></ul></div>
+      <div class="footer-col"><h4 data-i18n="foot_h_nav">Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="about.html">À propos</a></li><li><a href="blog.html">Actualités</a></li><li><a href="partenaires.html">Partenariats</a></li></ul></div>
+      <div class="footer-col"><h4 data-i18n="foot_h_contact">Contact</h4><ul><li><a href="tel:+22899468126">+228 99 46 81 26</a></li><li><a href="/cdn-cgi/l/email-protection#95fcfbf3fad5f4f8f0ede5f0e7e1e6f4fbf1e5f4e7e1fbf0e7e6bbfbf0e1"><span class="__cf_email__" data-cfemail="b8d1d6ded7f8d9d5ddc0c8ddcacccbd9d6dcc8d9caccd6ddcacb96d6ddcc">[email&#160;protected]</span></a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 AMEXPERTS AND PARTNERS — Tous droits réservés</p><div class="footer-social"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="https://wa.me/22899468126"><i class="fab fa-whatsapp"></i></a><a href="/cdn-cgi/l/email-protection#2f4e424a575f4a5d5b5c5f4e5d5b414a5d5c1d1f6f48424e4643014c4042"><i class="fas fa-envelope"></i></a></div></div>
+  </footer>
+  <a href="/cdn-cgi/l/email-protection#b0d9ded6dff0d1ddd5c8c0d5c2c4c3d1ded4c0d1c2c4ded5c2c39eded5c4" class="whatsapp-float mail-float" title="Email"><i class="fas fa-envelope"></i></a>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
+<script src="i18n.js"></script>
+</body>
+</html>
